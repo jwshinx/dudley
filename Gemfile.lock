@@ -49,6 +49,7 @@ GEM
       capybara (>= 1.1.2)
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
+    database_cleaner (0.7.1)
     diff-lcs (1.1.3)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -122,6 +123,7 @@ PLATFORMS
 
 DEPENDENCIES
   cucumber-rails (>= 0.3.2)
+  database_cleaner
   mysql2 (~> 0.2.11)
   rails (= 3.0.10)
   rspec-rails (>= 2.0.0)

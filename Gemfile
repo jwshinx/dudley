@@ -29,5 +29,6 @@ gem 'mysql2', '~> 0.2.11'
  group :development, :test do
   gem "rspec-rails", ">= 2.0.0"
   gem "cucumber-rails", ">= 0.3.2"
+  gem "database_cleaner"
 #   gem 'webrat'
  end
