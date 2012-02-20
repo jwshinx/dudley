@@ -1,0 +1,14 @@
+<div id="rings-wrapper">
+  <div id="gallery">
+    <div id="tn-row-1" class="re-thumbnail-row">
+      <ul class="thumbnails">
+        <% unless @rings.nil? %>
+          <% for ring in @rings %>
+            <li><%= link_to image_tag(ring.maintn), 
+                    :action => 'oneproduct', :id => ring %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div> <!-- thumbnail-row -->
+  </div> <!-- gallery -->
+</div> <!-- rings-wrapper -->

@@ -1,0 +1,208 @@
+<div id="oneproduct-wrapper">
+  <% content_for(:productdesc) do %>
+    <div id="itemtext">
+      <span class="stylesize18"><%=h @product.name %></span><br /><br />
+      <span class="stylesize13"><%=h @product.description %></span><br /><br /> 
+      <span id="sizenote" class="stylesize13"><%=h @product.size %></span><br /><br />
+      <span class="stylesize13">
+        <% if @product.price == 999 %>
+          <%= image_tag 'sold.png' %>
+        <% else %>
+          <%= number_to_currency(@product.price, :precision => 0) %>
+        <% end %>
+      </span>
+      <br /><br />
+
+<form id="addtocartform" target="_self" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+      <!-- <xxx % ring_size (@product.category == 'Rings') do x%  x> -->
+      <%= ring_size (@pattern =~ @product.category) do %>
+        <div id="size-div">
+          <span id="span1">sizes (select one)</span><br />
+
+          <div>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '5' %>&nbsp;5
+            </span>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '5.5' %>&nbsp;5.5
+            </span>
+          </div>
+          <div>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '6' %>&nbsp;6
+            </span>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '6.5' %>&nbsp;6.5
+            </span>
+          </div>
+          <div>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '7' %>&nbsp;7
+            </span>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '7.5' %>&nbsp;7.5
+            </span>
+          </div>
+          <div>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '8' %>&nbsp;8
+            </span>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '8.5' %>&nbsp;8.5
+            </span>
+          </div>
+          <div>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '9' %>&nbsp;9
+            </span>
+            <span class="span2">
+              <%= radio_button_tag 'os0', '9.5' %>&nbsp;9.5
+            </span>
+          </div>
+
+        </div>
+        <input type="hidden" name="on0" value="size">
+      <% end %>
+
+      <div id="addtocart-div">
+
+
+<input type="hidden" name="cmd" value="_cart">
+<input type="hidden" name="business" value="rosemarydudley@gmail.com">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="item_name" value="<%=h @product.name %>">
+<input type="hidden" name="item_number" value="<%=h @product.category %><%=h @product.prodid %>">
+<input type="hidden" name="amount" value="<%=h @product.price %>">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="button_subtype" value="products">
+<input type="hidden" name="no_note" value="0">
+<input type="hidden" name="no_shipping" value="2">
+<input type="hidden" name="rm" value="1">
+<input type="hidden" name="return" value="http://www.rosemarydudley.com">
+<input type="hidden" name="cancel_return" value="http://www.rosemarydudley.com">
+<input type="hidden" name="tax_rate" value="0">
+<input type="hidden" name="shipping" value="<%=h @product.shipping %>">
+<input type="hidden" name="shipping2" value="<%=h @product.shipping %>">
+<input type="hidden" name="add" value="1">
+<input type="hidden" name="bn" value="PP-ShopCartBF:add_to_cart_button.gif:NonHosted">
+<!-- image_submit_tag 'addtocart.png', :id => 'addtocart-img' -->
+        <% if @product.price == 999 %>
+          <!-- custom made sold item; no need to submit for payment -->
+        <% else %>
+          <%= image_submit_tag 'addtocart.png', :id => 'addtocart-img' %>
+        <% end %>
+</form>
+
+
+
+
+      </div> <!-- add-to-cart div area -->
+    </div>
+    <div id="ymal-area">
+      you might also like:
+      <div id="ymal-top">
+        <% if @ymal1.nil? %>
+         1 
+        <% else %>
+         <%= link_to image_tag(@product.like1tn),
+              :action => 'oneproduct', :id => @ymal1.id %> 
+        <% end %>
+        <% if @ymal2.nil? %>
+         2
+        <% else %>
+         <%= link_to image_tag(@product.like2tn), 
+              :action => 'oneproduct', :id => @ymal2.id %> 
+        <% end %>
+      </div>
+      <div id="ymal-bottom">
+        <% if @ymal3.nil? %>
+         3
+        <% else %>
+         <%= link_to image_tag(@product.like3tn),  
+              :action => 'oneproduct', :id => @ymal3 %> 
+        <% end %>
+        <% if @ymal4.nil? %>
+         4
+        <% else %> 
+         <%= link_to image_tag(@product.like4tn), 
+              :action => 'oneproduct', :id => @ymal4 %> 
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div id="oea-content">
+    <div id="oeac-top">
+      <div id="pddiv-c1">
+        <%= image_tag @product.full1, :id => 'main-img' %> 
+      </div>
+      <div id="pddiv-c2">
+        <div id="pddiv-c2c1">
+          <div id="pddiv-c2-1">
+            <% unless @product.tn1.empty? %>
+              <!--
+              < % = link_to_remote image_tag(@product.tn1, 
+                   :id => 'tn1'),
+                   :url => { :controller => "product",
+                             :action => "displayfullimage",
+                             :id => @product, :tn => "tn1",
+                             :from => "oneearring" } %> 
+              -->
+            <% end %>
+          </div> 
+          <div id="pddiv-c2-2">
+            <% unless @product.tn2.empty? %>
+              <!-- <%= image_tag @product.tn2, :id => 'tn2' %> -->
+              <!--
+              < % = link_to_remote image_tag(@product.tn2, 
+                   :id => 'tn2'),
+                   :url => { :controller => "product",
+                             :action => "displayfullimage",
+                             :id => @product, :tn => "tn2",
+                             :from => "oneearring" } %> 
+              -->
+            <% end %>
+          </div> 
+          <div id="pddiv-c2-3">
+            <% unless @product.tn3.empty? %>
+              <!--
+              < % = link_to_remote image_tag(@product.tn3, 
+                   :id => 'tn3'),
+                   :url => { :controller => "product",
+                             :action => "displayfullimage",
+                             :id => @product, :tn => "tn3",
+                             :from => "oneearring" } %> 
+              -->
+            <% end %>
+          </div> 
+        </div>
+        <div id="pddiv-c2c2">
+
+
+          <div id="cart-area">
+
+<form target="_self" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_cart">
+<input type="hidden" name="business" value="rosemarydudley@gmail.com">
+<input type="hidden" name="display" value="1">
+<input type="hidden" name="shopping_url" value="http://www.rosemarydudley.com">
+  <%= image_submit_tag 'shoppingcart.png' %>
+</form>
+          
+          </div>
+          <div id="oneprod-prev-area">
+            <%= link_to image_tag('previous.png', :id => 'prev-img'), 
+                :action => 'previousItem', :id => @previousProduct,
+                :from => 'earrings' %>
+          </div>
+          <div id="oneprod-next-area">
+            <%= link_to image_tag('next.png', :id => 'next-img'), 
+                :action => 'nextItem', :id => @nextProduct,
+                :from => 'earrings' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> <!-- oneearring-wrapper -->

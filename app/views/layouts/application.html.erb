@@ -7,8 +7,13 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+ <div id="sidebar" style="margin-top:50px;width:200px;display:inline;float:left;">
+  <!-- < % = render :partial => '/shared/login' % -->
+ </div>
+ <div id="content" style="margin-top:50px;width:500px;display:inline;float:left;">
+  <%= yield %>
+ </div>
 
-<%= yield %>
 
 </body>
 </html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Rosemary Dudley Designs</title>
+  <%= stylesheet_link_tag 'style', 'gallery', 'single' %>
+  <%= javascript_include_tag :all %>
+  <link rel="icon" type="image/ico" href="/favicon.ico" />
+</head>
+<!--<body onLoad="StartSlideShow()">-->
+<body>
+  <div id="wrapper">
+    <div id="header">
+      <div id="logo">
+        <%= link_to image_tag('fullname.gif'), :controller => 'store', :action=> 'index' %>
+      </div> <!-- logo -->
+
+      <%= hidden_div_if(params[:action] == 'oneproduct') do %>
+
+      <div id="layout-cart-area">
+<form target="_self" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_cart">
+<input type="hidden" name="business" value="rosemarydudley@gmail.com">
+<input type="hidden" name="display" value="1">
+<input type="hidden" name="shopping_url" value="http://www.rosemarydudley.com">
+  <%= image_submit_tag 'shoppingcart.png' %>
+</form>
+      </div>
+      <% end %>
+    </div> <!-- header -->
+    <%= wide_menu_unless( params[:action] == 'oneproduct') do %>
+      <ul>
+        <li>
+          <%= link_to image_tag('earrings.png', :id=>"nav-btn-1"), :controller => 'product', :action => 'earrings'  %>
+        </li>
+        <li>
+          <%= link_to image_tag('necklaces.png', :id=>"nav-btn-2"), :controller => 'product', :action => 'necklaces' %>
+        </li>
+        <li>
+          <%= link_to image_tag('rings.png', :id=>"nav-btn-3"), :controller => 'product', :action => 'rings' %>
+        </li>
+        <li>
+          <%= link_to image_tag('custom.png', :id=>"nav-btn-4"), :controller => 'product', :action => 'custom' %>
+        </li>
+        <li>
+          <%= link_to image_tag('collections.png', :id=>"nav-btn-5"), :controller => 'product', :action => 'collections' %>
+        </li>
+      </ul>
+    <% end %>
+
+    <div id="page">
+      <div id="page-bgtop">
+        <!-- <div id="page-bgbtm"> -->
+          <!-- display prod-desc only when action 'oneearring' -->
+          <%= hidden_productdesc_div_unless(params[:action] == 'oneproduct') do %>
+            <!-- <div id="productdesc-div"> -->
+              <%= yield :productdesc %>
+            <!-- </div> -->
+          <% end %>
+    
+          <%= hidden_div_unless(params[:action] == 'earrings' ||
+                      params[:action] == 'rings' ||
+                      params[:action] == 'necklaces', 
+                      :alt => params[:action] ) do %>
+            <%= image_tag 'menutext.png' %>
+          <% end %>
+          <%= hidden_div_unless(params[:action] == 'custom',
+                      :alt => params[:action] ) do %>
+            <%= image_tag 'customtext.png' %>
+          <% end %>
+          <%= hidden_div_unless(params[:action] == 'collections' ||
+                      params[:action] == 'fakecollections',
+                      :alt => params[:action] ) do %>
+            <%= image_tag 'collectionstext.png' %>
+          <% end %>
+          <%= hidden_div_unless(params[:action] == 'contact',
+                      :alt => params[:action] ) do %>
+          <% end %>
+          <!-- display sidebar only when action NOT 'oneearring' -->
+          <%= hidden_hometext_unless(params[:action] == 'index' ||
+                      params[:action] == 'about' ||
+                      params[:action] == 'press' ||
+                      params[:action] == 'policies' ||
+                      params[:action] == 'locations') do %>
+          <div id="sidebar">
+            <ul>
+              <li>
+                <div id="search">
+                  <div id="sb-top-text">
+                    <%= image_tag 'contemporary-silver-jewelry_black.png' %>
+                  </div>
+                  <div id="sb-middle">
+                    <div id="ss-slot-1"><div id="ss-text-1">
+                      <%= image_tag 'elegant.png', :id => 'elegant_img' %></div></div>
+                    <div id="ss-slot-2"><div id="ss-text-2">
+                      <%= image_tag 'whimsical.png', :id => 'whimsical_img' %></div></div>
+                    <div id="ss-slot-3"><div id="ss-text-3">
+                      <%= image_tag 'sustainable.png', :id => 'sustainable_img' %></div></div>
+                  </div>
+                  <div id="sb-bottom-text">
+                    <%= image_tag 'made-in-the-bayarea.png', :id => 'bayarea' %>
+                  </div>
+                </div> <!-- search -->
+              </li>
+              <li>
+              </li>
+            </ul>
+          </div> <!-- sidebar -->
+
+          <% end %> <!-- hidden_div_if -->
+
+          <div id="content">
+            <%= yield :layout %>
+          </div> <!-- content -->
+        <!-- </div> --> <!-- page-bgbtm -->
+
+        <%= wide_menu_btm_unless( params[:action] == 'oneproduct') do %>
+          <div id="social-area">
+            <div class="social-icon">
+<a href="http://www.facebook.com/pages/Emeryville-CA/rosemary-dudley-designs/267005290112" target="_blank"  title="rosemary dudley designs"><%= image_tag 'fb_icon.gif' %></a>
+            </div>
+            <div class="social-icon">
+<a href="http://rosemarydudleydesigns.blogspot.com" target="_blank" title="rosemary dudley designs"><%= image_tag 'bs_icon.png' %></a>
+            </div>
+          </div>
+          <ul>
+	    <li><%= link_to("about", :controller => "store", :action => "about") %></li>
+	    <li><%= link_to("press", :controller => "store", :action => "press") %></li>
+	    <li><%= link_to("policies", :controller => "store", :action => "policies") %></li>
+	    <li><%= link_to("locations", :controller => "store", :action => "locations") %></li>
+	    <li><%= link_to("contact", :controller => "store", :action => "contact") %></li>
+            <li>
+              <div id="r-area">
+                <%= image_tag 'r.gif' %>
+                <div id="rd-copyright">Copyright rosemary dudley 2010</div>
+              </div>
+            </li>
+          </ul>
+        <% end %>
+      </div> <!-- page-bgtop -->
+      <!-- % = render :partial => '/shared/login' % -->
+    </div> <!-- page -->
+  </div> <!-- wrapper -->
+</body>
+</html>

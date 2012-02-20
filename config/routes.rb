@@ -1,4 +1,22 @@
 Rosemary::Application.routes.draw do
+  match 'about' => 'store#about', :as => :about
+  match 'press' => 'store#press', :as => :press
+  match 'policies' => 'store#policies', :as => :policies
+  match 'contact' => 'store#contact', :as => :contact
+  match 'locations' => 'store#locations', :as => :locations
+
+  match 'earrings' => 'product#earrings', :as => :earrings
+  match 'necklaces' => 'product#necklaces', :as => :necklaces
+  match 'product/:id' => 'product#oneproduct', :as => :item
+  match 'rings' => 'product#rings', :as => :rings
+  match 'custom' => 'product#custom', :as => :custom
+  match 'collections' => 'product#collections', :as => :collections
+
+  match 'previousItem' => 'product#previousItem', :as => :previous
+  match 'nextItem' => 'product#nextItem', :as => :next
+
+  root :to => "store#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

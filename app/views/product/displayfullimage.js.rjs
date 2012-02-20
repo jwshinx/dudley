@@ -1,0 +1,4 @@
+page.replace_html("pddiv-c1", :partial => "fullimage", :object => @earring)
+page["pddiv-c1"].visual_effect :opacity, :from => 0,
+                                         :to => 1,
+                                         :duration => 1

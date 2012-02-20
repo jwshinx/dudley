@@ -1,0 +1,13 @@
+<div id="earrings-wrapper">
+  <div id="gallery">
+    <div id="tn-row-1" class="sq-thumbnail-row">
+      <ul class="thumbnails">
+        <% unless @earrings.nil? %>
+          <% for earring in @earrings %>
+            <li><%= link_to image_tag(earring.maintn), item_path( earring ) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div> <!-- thumbnail-row -->
+  </div> <!-- gallery -->
+</div> <!-- earrings-wrapper -->
