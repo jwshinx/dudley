@@ -28,5 +28,6 @@ gem 'mysql2', '~> 0.2.11'
 # and rake tasks are available in development mode:
  group :development, :test do
   gem "rspec-rails", ">= 2.0.0"
+  gem "cucumber-rails", ">= 0.3.2"
 #   gem 'webrat'
  end
